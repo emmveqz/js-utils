@@ -1,6 +1,6 @@
 {
   "name": "@emmveqz/js-utils",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Utilities for JavaScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
