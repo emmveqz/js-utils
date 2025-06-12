@@ -16,6 +16,7 @@ import {
   IWithAsyncTryCatch,
   IWithTryCatch,
   MyAsyncGenerator,
+  NextRequest,
 } from '../types'
 
 //
@@ -25,7 +26,7 @@ import {
  *
  * even if all `promises` were resolved when passed.
  */
-export const getPromiseState = <T>(promise: Promise<T>): Promise<
+export const getPromiseState = <T>(promise: PromiseLike<T>): Promise<
   | 'pending'
   | 'fulfilled'
   | 'rejected'
@@ -41,15 +42,19 @@ export const getPromiseState = <T>(promise: Promise<T>): Promise<
 /**
  * Returns an iterator, yielding the value of `'fulfilled'` promises first.
  *
- * In case a promise is rejected, the iterator will yield an `Error` object instead.
+ * In case a promise is rejected, the iterator will yield an `Error` instance instead.
  */
 export async function* racePromisesIterator<T>(
-  promises: Promise<T>[],
+  promises: PromiseLike<T>[],
 ): MyAsyncGenerator<T|Error> {
   const pending = promises.concat([])
 
   while (pending.length) {
-    await Promise.race(pending)
+    try {
+      await Promise.race(pending)
+    } catch (ex) {
+      //
+    }
 
     for (let idx = 0; idx < pending.length; idx++) {
       const state = await getPromiseState(pending[idx])
@@ -58,12 +63,13 @@ export async function* racePromisesIterator<T>(
         continue
       }
 
-      const value = await pending[idx]
+      let nextRequest: NextRequest
 
-      const nextRequest = yield (state === 'fulfilled'
-        ? value
-        : new Error(String(value))
-      )
+      try {
+        nextRequest = yield await pending[idx]
+      } catch (ex) {
+        nextRequest = yield new Error(ex as string)
+      }
 
       if (nextRequest?.abort) {
         return
