@@ -1,0 +1,9 @@
+/.git/
+/.github/
+/.vscode/
+/.eslintrc.json
+/.gitignore
+/package-lock.json
+/src/
+/tsconfig.json
+/tslint.json

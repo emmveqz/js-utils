@@ -1,0 +1,50 @@
+{
+  "name": "@emmveqz/js-utils",
+  "version": "1.0.0",
+  "description": "Utilities for JavaScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "npx tsc --build ./tsconfig.json ",
+    "prepack": "rm -fR ./dist   &&   npm run build"
+  },
+  "author": "Emmanuel V. Lopez",
+  "license": "ISC",
+  "homepage": "https://github.com/emmveqz/js-utils#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/emmveqz/js-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/emmveqz/js-utils/issues"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
+  "keywords": [
+    "js",
+    "js-lib",
+    "js-library",
+    "js-tools",
+    "js-utils",
+    "ts-lib",
+    "ts-library",
+    "ts-tools",
+    "ts-utils",
+    "javascript",
+    "javascript-lib",
+    "javascript-library",
+    "javascript-tools",
+    "javascript-utils",
+    "typescript-lib",
+    "typescript-library",
+    "typescript-tools",
+    "typescript-utils"
+  ],
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "typescript": "^5.5.4",
+    "typescript-eslint": "^8.1.0"
+  }
+}

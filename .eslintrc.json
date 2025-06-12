@@ -1,0 +1,49 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "airbnb",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "globals": {
+    "globalThis": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true,
+      "tsx": true
+    },
+    "ecmaVersion": 2018,
+    "project": [
+      "./tsconfig.json"
+    ],
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/no-empty-object-type": "warn",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "arrow-body-style": "off",
+    "func-names": "off",
+    "import/extensions": [ "error", "ignorePackages", {
+      "": "never"
+    }],
+    "import/no-unresolved": "off",
+    "import/prefer-default-export": "warn",
+    "max-len": ["warn", {
+      "code": 134
+    }],
+    "no-await-in-loop": "warn",
+    "no-continue": "off",
+    "no-multiple-empty-lines": "warn",
+    "no-plusplus": "off",
+    "semi": "off"
+  }
+}
